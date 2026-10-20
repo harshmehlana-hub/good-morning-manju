@@ -15,7 +15,7 @@ const loveNotes=["Your smile(has to be my favourite smile I cant lie)","The way 
 const initialStars=[{id:1,x:13,y:24},{id:2,x:28,y:45},{id:3,x:44,y:18},{id:4,x:58,y:56},{id:5,x:75,y:28},{id:6,x:85,y:66},{id:7,x:36,y:73},{id:8,x:65,y:15}];
 function Heading({eyebrow,title,note}:{eyebrow:string;title:React.ReactNode;note?:string}){return <div className="section-heading"><span className="eyebrow">{eyebrow}</span><h2>{title}</h2>{note&&<p>{note}</p>}</div>}
 export default function Home(){
-const [activeLetter,setActiveLetter]=useState<number|null>(null),[complimentIndex,setComplimentIndex]=useState(2),[popped,setPopped]=useState<number[]>([]),[found,setFound]=useState<number[]>([]),[muted,setMuted]=useState(true),[audioReady,setAudioReady]=useState(false),[showSoundPrompt,setShowSoundPrompt]=useState(true);
+const [activeLetter,setActiveLetter]=useState<number|null>(null),[complimentIndex,setComplimentIndex]=useState(0),[popped,setPopped]=useState<number[]>([]),[found,setFound]=useState<number[]>([]),[muted,setMuted]=useState(true),[audioReady,setAudioReady]=useState(false),[showSoundPrompt,setShowSoundPrompt]=useState(true);
 const audioRef=useRef<HTMLAudioElement|null>(null);
 useEffect(()=>{const audio=audioRef.current;if(!audio)return;audio.volume=0.35;audio.muted=true;},[]);
 const startAudio=async()=>{const audio=audioRef.current;if(!audio)return;try{audio.muted=false;await audio.play();setMuted(false);setAudioReady(true);setShowSoundPrompt(false);}catch{audio.muted=true;setMuted(true);setAudioReady(false);}};
