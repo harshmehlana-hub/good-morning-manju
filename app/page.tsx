@@ -17,7 +17,7 @@ function Heading({eyebrow,title,note}:{eyebrow:string;title:React.ReactNode;note
 export default function Home(){
 const [activeLetter,setActiveLetter]=useState<number|null>(null),[complimentIndex,setComplimentIndex]=useState(2),[popped,setPopped]=useState<number[]>([]),[found,setFound]=useState<number[]>([]),[muted,setMuted]=useState(false),[audioReady,setAudioReady]=useState(false);
 const audioRef=useRef<HTMLAudioElement|null>(null);
-useEffect(()=>{const audio=audioRef.current;if(!audio)return;audio.volume=0.35;audio.muted=false;audio.play().then(()=>setAudioReady(true)).catch(()=>{audio.muted=true;setMuted(true);audio.play().then(()=>setAudioReady(true)).catch(()=>setAudioReady(false));});},[]);
+useEffect(()=>{const audio=audioRef.current;if(!audio)return;audio.volume=0.35;audio.muted=false;audio.play().then(()=>setAudioReady(true)).catch(()=>{setAudioReady(false);});},[]);
 const toggleAudio=async()=>{const audio=audioRef.current;if(!audio)return;if(audio.paused){try{await audio.play();setAudioReady(true);}catch{setAudioReady(false);return;}}audio.muted=!audio.muted;setMuted(audio.muted);};
 const bubbles=[{x:"12%",y:"20%",size:"small",msg:"You deserve a soft day."},{x:"30%",y:"60%",size:"large",msg:"One thing at a time. ♡"},{x:"47%",y:"14%",size:"medium",msg:"You are doing enough."},{x:"70%",y:"35%",size:"large",msg:"Breathe. You're here."},{x:"84%",y:"67%",size:"medium",msg:"You matter, Manju."},{x:"57%",y:"72%",size:"small",msg:"Rest is allowed."},{x:"19%",y:"77%",size:"medium",msg:"I'm rooting for you."}];
 const allFound=found.length===initialStars.length;
